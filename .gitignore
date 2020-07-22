@@ -1,4 +1,2 @@
-venv3
 db.sqlite3
 __pycache__
-src/certberus/local/**
