@@ -6,7 +6,7 @@
 On Linux::
 
 ```
-$ python3 -m virtualenv venv3
+$ ./manage init
 $ . venv3/bin/activate
 (venv)$ pip install -r requirements.txt
 ```
@@ -23,20 +23,18 @@ On Windows::
 ## migrate
 
 ```
-(venv3)$ cd certberus 
-(venv3)$ python manage.py migrate
+(venv3)$ .manage migrate
 ```
 
 
 ## Make admin user
 
 ```
-(venv3)$ python manage.py createsuperuser
+(venv3)$ .manage createsuperuser
 ```
 
 ## runserver
 
 ```
-(venv3)$ cd certberus 
-(venv3)$ python manage.py runserver
+(venv3)$ .manage runserver [args]
 ```
