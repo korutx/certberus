@@ -34,10 +34,10 @@ init() {
 }
 
 manage() {
-    if test -f "$ROOTDIR/src/certberus/local/settings.py"; then
+    if test -f "$ROOTDIR/src/local/settings.py"; then
         export DJANGO_SETTINGS_MODULE="local.settings"
     fi
-    cd "$ROOTDIR/src/certberus" && python manage.py $@ 
+    cd "$ROOTDIR/src" && python manage.py $@ 
 }
 
 if [ "x$1" = "xinit" ]; then
