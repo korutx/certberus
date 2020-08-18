@@ -4,10 +4,24 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.renderers import JSONRenderer
 from rest_framework import status
-
+from rest_framework import permissions, serializers, status, viewsets
 from .services import list_certificates
+from .models import Project
+from .serializers import ProjectSerializer
+
 # Create your views here.
 
+class ProjectView(viewsets.ModelViewSet):
+    """
+    """
+    
+    serializer_class = ProjectSerializer
+    
+    queryset = Project.objects.all()
+    
+    permission_classes = ( 
+        permissions.IsAuthenticatedOrReadOnly, 
+    )
     
 @api_view(['GET'])    
 def certificates(request):
@@ -23,5 +37,4 @@ def certificates(request):
             'live_dir': cert.live_dir
         })
     
-    print(cert_map)
     return Response(cert_map)

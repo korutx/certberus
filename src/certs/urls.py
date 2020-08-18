@@ -1,7 +1,11 @@
-from django.urls import path, re_path
+from django.urls import path, re_path, include
+from rest_framework import routers
+from .views         import ProjectView
 
-from . import views
+
+router = routers.SimpleRouter()
+router.register(r'projects', ProjectView)
 
 urlpatterns = [
-    re_path(r'certificates/$', views.certificates),
+    re_path('^api/v1/', include(router.urls))
 ]
