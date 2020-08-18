@@ -1,8 +1,14 @@
+import logging
+import traceback
+
+from certbot import crypto_util
 from certbot._internal.cert_manager import certificates 
 from certbot._internal import configuration
 from certbot._internal import cli
 from certbot._internal.plugins import disco as plugins_disco
 from certbot._internal import storage
+from . import constants
+logger = logging.getLogger(__name__)
 
 def list_certificates():
     """Display information about certs configured with Certbot
@@ -12,7 +18,13 @@ def list_certificates():
     """
     
     plugins = plugins_disco.PluginsRegistry.find_all()
-    args = cli.prepare_and_parse_args(plugins, ["certificates", "--config-dir=/tmp", "--work-dir=/tmp", "--logs=/tmp"])
+    
+    args = cli.prepare_and_parse_args(plugins, [
+        "certificates", 
+        "--config-dir=" + constants.CONFIG_DIR, 
+        "--work-dir=" + constants.WORK_DIR, 
+        "--logs=" + constants.LOGS_DIR
+    ])
     config = configuration.NamespaceConfig(args)
     
     parsed_certs = []
